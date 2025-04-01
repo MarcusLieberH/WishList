@@ -2,38 +2,52 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.4.4</version>
-		<relativePath/>
+		<version>3.4.2</version>
+		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.wishlist</groupId>
-	<artifactId>wishlist</artifactId>
+
+	<groupId>com.example</groupId>
+	<artifactId>TouristGuide2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>wishlist</name>
-	<description>Demo project for Spring Boot</description>
+	<name>TouristGuide2</name>
+	<description>Tourist Guide Application</description>
 
 	<properties>
-		<java.version>21</java.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>17</java.version>
 	</properties>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jdbc</artifactId>
-		</dependency>
+		<!-- Spring Boot Web for REST APIs -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+
+		<!-- Spring Boot Thymeleaf for HTML rendering -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+
+		<!-- Spring Boot JDBC for direct MySQL communication -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+
+		<!-- MySQL JDBC Driver -->
 		<dependency>
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>
+			<version>8.0.33</version>
 			<scope>runtime</scope>
 		</dependency>
+
+		<!-- Spring Boot Testing -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -43,13 +57,21 @@
 
 	<build>
 		<plugins>
+			<!-- Spring Boot Maven Plugin -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<!-- Maven Surefire Plugin to run tests -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.11.0</version>  <!-- Eller den nyeste version -->
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M5</version> <!-- Latest version -->
 				<configuration>
-					<source>21</source>
-					<target>21</target>
+					<includes>
+						<include>**/*Test.java</include> <!-- Matches all test classes -->
+					</includes>
 				</configuration>
 			</plugin>
 		</plugins>
