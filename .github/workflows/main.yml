@@ -28,7 +28,7 @@ jobs:
       - name: Kør Qodana
         uses: JetBrains/qodana-action@v2023.2
         with:
-          args: --baseline
+          args: --show-report
 
       - name: Deploy (valgfrit, fx Docker)
         run: |
