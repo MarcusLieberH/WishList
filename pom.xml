@@ -45,16 +45,14 @@
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>3.3.1</version>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.11.0</version>  <!-- Eller den nyeste version -->
 				<configuration>
-					<encoding>UTF-8</encoding>
+					<source>21</source>
+					<target>21</target>
 				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
+
 </project>
