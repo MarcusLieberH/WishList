@@ -1,32 +1,39 @@
 package com.wishlist.controller;
 
 import com.wishlist.model.Wishlist;
-import com.wishlist.repository.WishlistRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
+import com.wishlist.service.WishlistService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
+import java.util.Optional;
 
-@RestController
+@Controller
 @RequestMapping("/wishlist")
 public class WishlistController {
+    private final WishlistService wishlistService;
 
-    private final JdbcTemplate jdbcTemplate;
-
-    @Autowired
-    public WishlistController(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public WishlistController(WishlistService wishlistService) {
+        this.wishlistService = wishlistService;
     }
 
     @GetMapping
-    public List<Map<String, Object>> getWishlist() {
-        return jdbcTemplate.queryForList("SELECT * FROM wishlist");
+    public String showWishlists(Model model) {
+        List<Wishlist> wishlists = wishlistService.getAllWishlists();
+        model.addAttribute("wishlists", wishlists);
+        return "wishlist"; // Lader Thymeleaf vise wishlist.html
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteWishlist(@PathVariable int id) {
-        jdbcTemplate.update("DELETE FROM wishlist WHERE id = ?", id);
+    @PostMapping("/add")
+    public String addWishlist(@RequestParam String name) {
+        wishlistService.addWishlist(name);
+        return "redirect:/wishlist";
+    }
+
+    @PostMapping("/{id}/delete")
+    public String deleteWishlist(@PathVariable int id) {
+        wishlistService.deleteWishlist(id);
+        return "redirect:/wishlist";
     }
 }

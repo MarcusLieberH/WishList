@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Min Ønskeliste</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<h1>Ønskelister</h1>
+
+<div>
+    <input type="text" id="wishlistName" placeholder="Navn på ønskeseddel">
+    <button onclick="createWishlist()">Opret ønskeseddel</button>
+</div>
+
+<ul id="wishlistContainer"></ul>
+
+<script>
+    async function fetchWishlists() {
+        const response = await fetch('/wishlist');
+        const wishlists = await response.json();
+        const container = document.getElementById('wishlistContainer');
+        container.innerHTML = '';
+        wishlists.forEach(wishlist => {
+            const li = document.createElement('li');
+            li.innerHTML = `<a href="wishlist.html?id=${wishlist.id}">${wishlist.name}</a>`;
+            container.appendChild(li);
+        });
+    }
+
+    async function createWishlist() {
+        const name = document.getElementById('wishlistName').value;
+        if (!name) return alert('Indtast et navn!');
+        await fetch(`/wishlist?name=${name}`, { method: 'POST' });
+        fetchWishlists();
+    }
+
+    fetchWishlists();
+</script>
+</body>
+</html>

@@ -10,7 +10,9 @@ public class Wishlist {
     @JsonFormat(pattern = "HH:mm")
     private LocalDateTime createdAt;
 
-    public Wishlist() {}
+    public Wishlist() {
+
+    }
 
     public Wishlist(int id, String name, LocalDateTime createdAt) {
         this.id = id;
@@ -18,12 +20,24 @@ public class Wishlist {
         this.createdAt = createdAt;
     }
 
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public LocalDateTime getCreatedAt() { return createdAt; }
-    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
 }
