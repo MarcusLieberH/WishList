@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Velkommen</title>
+</head>
+<body>
+
+<h1>Velkommen til Ønskeliste App</h1>
+
+<h2>Log ind</h2>
+<form th:action="@{/login}" method="post">
+  <input type="text" name="username" placeholder="Brugernavn" required>
+  <input type="password" name="password" placeholder="Adgangskode" required>
+  <button type="submit">Log ind</button>
+</form>
+
+<h2>Opret konto</h2>
+<form th:action="@{/register}" method="post">
+  <input type="text" name="username" placeholder="Brugernavn" required>
+  <input type="email" name="email" placeholder="Email" required>
+  <input type="password" name="password" placeholder="Adgangskode" required>
+  <button type="submit">Opret konto</button>
+</form>
+
+</body>
+</html>

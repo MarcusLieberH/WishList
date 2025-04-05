@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Rediger Ønske</title>
+</head>
+<body>
+
+<h1>Rediger Ønske</h1>
+
+<form th:action="@{/wishlist/{wishlistId}/items/{itemId}/edit(wishlistId=${wishlist.id}, itemId=${item.id})}" method="post">
+    <input type="text" name="name" th:value="${item.name}" required>
+    <input type="text" name="link" th:value="${item.link}">
+    <button type="submit">Gem Ændringer</button>
+</form>
+
+<a th:href="@{/wishlist/{wishlistId}(wishlistId=${wishlist.id})}">Tilbage</a>
+
+</body>
+</html>
