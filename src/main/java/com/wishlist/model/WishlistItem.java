@@ -2,6 +2,7 @@ package com.wishlist.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 public class WishlistItem {
     private int id;
@@ -36,4 +37,7 @@ public class WishlistItem {
 
     public LocalDateTime getCreatedAt() { return createdAt; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
-}
+
+    }
+
+

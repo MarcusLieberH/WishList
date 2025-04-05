@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class WishlistItemRepository {
@@ -36,4 +37,15 @@ public class WishlistItemRepository {
     public void deleteWishlistItem(int id) {
         jdbcTemplate.update("DELETE FROM wishlist_item WHERE id = ?", id);
     }
+    public void updateWishlistItem(int id, String name, String link) {
+        jdbcTemplate.update("UPDATE wishlist_item SET name = ?, link = ? WHERE id = ?", name, link, id);
+    }
+    public Optional<WishlistItem> findById(int itemId) {
+        List<WishlistItem> results = jdbcTemplate.query("SELECT * FROM wishlist_item WHERE id = ?", wishlistItemRowMapper, itemId);
+        return results.isEmpty() ? Optional.empty() : Optional.of(results.get(0));
+    }
+    public List<WishlistItem> findAll() {
+        return jdbcTemplate.query("SELECT * FROM wishlist_item", wishlistItemRowMapper);
+    }
+
 }

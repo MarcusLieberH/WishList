@@ -4,6 +4,7 @@ import com.wishlist.model.WishlistItem;
 import com.wishlist.repository.WishlistItemRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class WishlistItemService {
@@ -24,4 +25,14 @@ public class WishlistItemService {
     public void deleteWishlistItem(int id) {
         wishlistItemRepository.deleteWishlistItem(id);
     }
+    public void updateWishlistItem(int itemId, String name, String link) {
+        wishlistItemRepository.updateWishlistItem(itemId, name, link);
+    }
+    public Optional<WishlistItem> getItemById(int itemId) {
+        return wishlistItemRepository.findById(itemId);
+    }
+    public List<WishlistItem> getAllWishlistItems() {
+        return wishlistItemRepository.findAll();
+    }
+
 }

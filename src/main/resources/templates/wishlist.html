@@ -5,18 +5,35 @@
     <title>Ønskelister</title>
 </head>
 <body>
-<h1>Ønskelister</h1>
 
-<form action="#" th:action="@{/wishlist/add}" method="post">
-    <input type="text" name="name" placeholder="Navn på ønskeseddel" required>
-    <button type="submit">Opret ønskeseddel</button>
+<h1>Ønskelister</h1>
+<p>Velkommen, <span th:text="${username}"></span>!</p>
+
+<form th:action="@{/auth/logout}" method="post">
+    <button type="submit">Log ud</button>
 </form>
 
+<form th:action="@{/wishlist/add}" method="post">
+    <label for="name">Navn på ønskeliste:</label>
+    <input type="text" id="name" name="name" required>
+    <button type="submit">Opret ønskeliste</button>
+</form>
+
+<h2>Eksisterende ønskelister:</h2>
+<ul>
+    <li th:each="wishlist : ${wishlists}">
+        <span th:text="${wishlist.name}"></span>
+        <a th:href="@{/wishlist/{id}(id=${wishlist.id})}">📜 Se detaljer</a>
+    </li>
+</ul>
+
+<p th:if="${#lists.isEmpty(wishlists)}">Ingen ønskelister fundet.</p>
 <ul>
     <li th:each="wishlist : ${wishlists}">
         <a th:href="@{/wishlist/{id}(id=${wishlist.id})}" th:text="${wishlist.name}"></a>
-        <form action="#" th:action="@{/wishlist/{id}/delete(id=${wishlist.id})}" method="post" style="display:inline;">
-            <button type="submit">❌</button>
+        <form th:action="@{/wishlist/{id}/delete(id=${wishlist.id})}" method="post">
+
+        <button type="submit">❌</button>
         </form>
     </li>
 </ul>

@@ -4,6 +4,7 @@ import com.wishlist.model.Wishlist;
 import com.wishlist.model.WishlistItem;
 import com.wishlist.service.WishlistItemService;
 import com.wishlist.service.WishlistService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -30,9 +31,9 @@ public class WishlistItemController {
         if (wishlist.isPresent()) {
             model.addAttribute("wishlist", wishlist.get());
             model.addAttribute("wishlistItems", items);
-            return "wishlistItems"; // Lader Thymeleaf vise wishlistItems.html
+            return "wishlistItems";
         }
-        return "redirect:/wishlist"; // Hvis ønskelisten ikke findes
+        return "redirect:/wishlist";
     }
 
     @PostMapping("/add-item")
@@ -40,10 +41,10 @@ public class WishlistItemController {
         wishlistItemService.addWishlistItem(wishlistId, name, link);
         return "redirect:/wishlist/" + wishlistId;
     }
-
     @PostMapping("/items/{itemId}/delete")
     public String deleteWishlistItem(@PathVariable int wishlistId, @PathVariable int itemId) {
         wishlistItemService.deleteWishlistItem(itemId);
         return "redirect:/wishlist/" + wishlistId;
     }
 }
+

@@ -1,9 +1,9 @@
 package com.wishlist.repository;
-
 import com.wishlist.model.Wishlist;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,11 +31,15 @@ public class WishlistRepository {
         return results.isEmpty() ? Optional.empty() : Optional.of(results.get(0));
     }
 
-    public void addWishlist(String name) {
-        jdbcTemplate.update("INSERT INTO wishlist (name) VALUES (?)", name);
+    public Wishlist addWishlist(String name) {
+        jdbcTemplate.update("INSERT INTO wishlist (name, created_at) VALUES (?, NOW())", name);
+        return jdbcTemplate.queryForObject("SELECT * FROM wishlist WHERE name = ? ORDER BY id DESC LIMIT 1",
+                wishlistRowMapper, name);
     }
 
     public void deleteWishlist(int id) {
         jdbcTemplate.update("DELETE FROM wishlist WHERE id = ?", id);
     }
+
 }
+
