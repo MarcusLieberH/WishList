@@ -1,5 +1,4 @@
 package com.wishlist.controller;
-
 import com.wishlist.model.User;
 import com.wishlist.service.UserService;
 import jakarta.servlet.http.HttpSession;
@@ -19,15 +18,16 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam String username, @RequestParam String password, Model model) {
+    public String login(@RequestParam String username, @RequestParam String password, Model model, HttpSession session) {
         User user = userService.authenticate(username, password);
 
         if (user != null) {
             model.addAttribute("user", user);
+            session.setAttribute("username", user.getUsername());
             return "redirect:/wishlist"; // Redirect til ønskelister
         } else {
             model.addAttribute("error", "Forkert brugernavn eller adgangskode");
-            return "index"; // Tilbage til login-siden med fejl
+            return "index";
         }
     }
 

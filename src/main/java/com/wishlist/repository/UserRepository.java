@@ -1,5 +1,4 @@
 package com.wishlist.repository;
-
 import com.wishlist.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -7,12 +6,11 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
-
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Repository
@@ -52,7 +50,7 @@ public class UserRepository {
             return ps;
         }, keyHolder);
 
-        user.setId(keyHolder.getKey().intValue());
+        user.setId(Objects.requireNonNull(keyHolder.getKey()).intValue());
         return user;
     }
 

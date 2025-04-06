@@ -2,7 +2,7 @@ package com.wishlist.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDateTime;
-import java.util.Optional;
+
 
 public class WishlistItem {
     private int id;

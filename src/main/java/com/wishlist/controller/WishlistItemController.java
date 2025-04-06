@@ -1,17 +1,13 @@
 package com.wishlist.controller;
-
 import com.wishlist.model.Wishlist;
 import com.wishlist.model.WishlistItem;
 import com.wishlist.service.WishlistItemService;
 import com.wishlist.service.WishlistService;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
-
 @Controller
 @RequestMapping("/wishlist/{wishlistId}")
 public class WishlistItemController {

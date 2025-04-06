@@ -32,7 +32,6 @@
     <li th:each="wishlist : ${wishlists}">
         <a th:href="@{/wishlist/{id}(id=${wishlist.id})}" th:text="${wishlist.name}"></a>
         <form th:action="@{/wishlist/{id}/delete(id=${wishlist.id})}" method="post">
-
         <button type="submit">❌</button>
         </form>
     </li>

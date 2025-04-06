@@ -8,8 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-@Controller
 
+@Controller
 public class WishlistController {
 
     private final WishlistService wishlistService;
@@ -23,10 +23,13 @@ public class WishlistController {
     }
 
     @GetMapping("/wishlist")
-    public String showWishlists(Model model) {
+    public String showWishlists(Model model,HttpSession session) {
         List<Wishlist> wishlists = wishlistService.getAllWishlists();
+        String username = (String) session.getAttribute("username");
+
         System.out.println("📜 Hentede ønskelister: " + wishlists.size());
         model.addAttribute("wishlists", wishlists);
+        model.addAttribute("username", username);
         return "wishlist";
     }
 
@@ -38,7 +41,7 @@ public class WishlistController {
         return "redirect:/wishlist";
     }
 
-    @PostMapping("/{id}/delete")
+    @PostMapping("/wishlist/{id}/delete")
     public String deleteWishlist(@PathVariable int id) {
         wishlistService.deleteWishlist(id);
         return "redirect:/wishlist";
