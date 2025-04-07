@@ -44,6 +44,11 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-crypto</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.microsoft.sqlserver</groupId>
+			<artifactId>mssql-jdbc</artifactId>
+			<version>10.2.0.jre8</version> <!-- Use the appropriate version -->
+		</dependency>
 
 		<!-- For validation -->
 		<dependency>

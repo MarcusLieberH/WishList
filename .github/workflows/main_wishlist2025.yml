@@ -63,4 +63,4 @@ jobs:
           app-name: 'wishlist2025'
           slot-name: 'Production'
           package: '*.jar'
-          
+
