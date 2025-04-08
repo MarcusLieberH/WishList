@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Del din ønskeliste</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        .share-container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .share-title {
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .link-box {
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            word-break: break-all;
+        }
+
+        .social-share {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .social-link {
+            display: inline-block;
+            padding: 8px 12px;
+            background-color: #4267B2;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .twitter-link {
+            background-color: #1DA1F2;
+        }
+
+        .email-link {
+            background-color: #DB4437;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="share-container">
+    <h1 class="share-title">Del din ønskeliste</h1>
+
+    <p>Del din ønskeliste "<span th:text="${wishlistName}">Min ønskeliste</span>" med venner og familie ved at sende dem dette link:</p>
+
+    <div class="link-box">
+        <p th:text="${shareableLink}">http://yourwebsite.com/shared/wishlist/123</p>
+    </div>
+
+    <p>Du kan kopiere linket ovenfor og dele det via:</p>
+
+    <div class="social-share">
+        <a th:href="@{https://www.facebook.com/sharer/sharer.php(u=${shareableLink})}" target="_blank" class="social-link">Facebook</a>
+        <a th:href="@{https://twitter.com/intent/tweet(text='Se min ønskeliste!',url=${shareableLink})}" target="_blank" class="social-link twitter-link">Twitter</a>
+        <a th:href="@{mailto:?subject=Se min ønskeliste!&amp;body={shareLink}(shareLink=${shareableLink})}" class="social-link email-link">Email</a>
+    </div>
+
+    <p>Når nogen besøger dette link, vil de se din ønskeliste med alle de varer, du har tilføjet. De kan markere varer som reserveret for at indikere, at de planlægger at købe dem til dig.</p>
+
+    <a th:href="@{/wishlist}" class="back-link">← Tilbage til ønskelister</a>
+</div>
+</body>
+</html>

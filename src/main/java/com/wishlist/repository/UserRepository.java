@@ -79,5 +79,10 @@ public class UserRepository {
         List<User> users = jdbcTemplate.query(sql, userRowMapper, username);
         return users.isEmpty() ? Optional.empty() : Optional.of(users.get(0));
     }
+    public Optional<User> findById(int id) {
+        String sql = "SELECT * FROM users WHERE id = ?";
+        List<User> users = jdbcTemplate.query(sql, userRowMapper, id);
+        return users.isEmpty() ? Optional.empty() : Optional.of(users.get(0));
+    }
 
 }
