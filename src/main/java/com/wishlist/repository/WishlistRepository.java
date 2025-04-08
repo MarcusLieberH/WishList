@@ -14,12 +14,14 @@ public class WishlistRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    private final RowMapper<Wishlist> wishlistRowMapper = (rs, rowNum) ->
-            new Wishlist(
-                    rs.getInt("id"),
-                    rs.getString("name"),
-                    rs.getTimestamp("created_at").toLocalDateTime()
-            );
+    private final RowMapper<Wishlist> wishlistRowMapper = (rs, rowNum) -> new Wishlist(
+            rs.getInt("id"),
+            rs.getString("name"),
+            rs.getTimestamp("created_at") != null
+                    ? rs.getTimestamp("created_at").toLocalDateTime()
+                    : null
+    );
+
 
     public List<Wishlist> findAll() {
         return jdbcTemplate.query("SELECT * FROM wishlist", wishlistRowMapper);
@@ -31,9 +33,16 @@ public class WishlistRepository {
     }
 
     public void addWishlist(String name) {
-        jdbcTemplate.update("INSERT INTO wishlist (name, created_at) VALUES (?, NOW())", name);
-        jdbcTemplate.queryForObject("SELECT * FROM wishlist WHERE name = ? ORDER BY id DESC LIMIT 1",
-                wishlistRowMapper, name);
+        try {
+            System.out.println("✅ Tilføjer ønskeliste: " + name);
+            // If you set DEFAULT GETDATE() in your schema, you can just insert name
+            int rows = jdbcTemplate.update("INSERT INTO wishlist (name) VALUES (?)", name);
+            System.out.println("✅ Rækker indsat: " + rows);
+        } catch (Exception e) {
+            System.err.println("❌ Fejl under tilføjelse: " + e.getMessage());
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     public void deleteWishlist(int id) {

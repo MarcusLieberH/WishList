@@ -10,6 +10,7 @@
 
 <h1>Rediger Ønske</h1>
 
+
 <form th:action="@{/wishlist/{wishlistId}/items/{itemId}/edit(wishlistId=${wishlist.id}, itemId=${item.id})}" method="post">
     <input type="text" name="name" th:value="${item.name}" required>
     <input type="text" name="link" th:value="${item.link}">
