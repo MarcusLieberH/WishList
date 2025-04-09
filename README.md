@@ -1,17 +1,17 @@
 ## 🖼️ Brugerflade og funktionalitet
 
 ### 🔐 Login og opret bruger
-![Login og opret](./images/ForsideLoginOpret.png)
+![Login og opret](.src/main/resources/images/ForsideLoginOpret.png)
 
 ### 📂 Oversigt over ønskelister
-![Ønskelister](./images/ønskelister.png)
+![Ønskelister](.src/main/resources/images/ønskelister.png)
 
 ### 📋 Visning af ønskeliste med items
-![Ønskeliste items](./images/ØnskelisteItems.png)
+![Ønskeliste items](.src/main/resources/images/ØnskelisteItems.png)
 
 ### ✏️ Redigering af ønske
-![Rediger ønske](./images/RedigerØnske.png)
+![Rediger ønske](.src/main/resources/images/RedigerØnske.png)
 
 ### ☁️ Azure SQL database
-![Azure database](./images/azureDatabase.png)
+![Azure database](.src/main/resources/images/azureDatabase.png)
 
