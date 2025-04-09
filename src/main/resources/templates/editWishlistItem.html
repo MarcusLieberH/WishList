@@ -2,22 +2,31 @@
 <html lang="da" xmlns:th="http://www.thymeleaf.org">
 <head>
     <link rel="stylesheet" href="/styles.css">
-
     <meta charset="UTF-8">
     <title>Rediger Ønske</title>
+
 </head>
 <body>
 
 <h1>Rediger Ønske</h1>
 
-
-<form th:action="@{/wishlist/{wishlistId}/items/{itemId}/edit(wishlistId=${wishlist.id}, itemId=${item.id})}" method="post">
-    <input type="text" name="name" th:value="${item.name}" required>
-    <input type="text" name="link" th:value="${item.link}">
+<form th:action="@{/wishlist/{wishlistId}/items/{itemId}/edit(wishlistId=${wishlistId}, itemId=${item.id})}" method="post">
+    <div>
+        <label for="name">Navn:</label>
+        <input type="text" id="name" name="name" th:value="${item.name}" required>
+    </div>
+    <div>
+        <label for="link">Link:</label>
+        <input type="text" id="link" name="link" th:value="${item.link}">
+    </div>
+    <div>
+        <label for="comment">Kommentar:</label>
+        <textarea id="comment" name="comment" th:text="${item.comment}"></textarea>
+    </div>
     <button type="submit">Gem Ændringer</button>
 </form>
 
-<a th:href="@{/wishlist/{wishlistId}(wishlistId=${wishlist.id})}">Tilbage</a>
+<a th:href="@{/wishlist/{wishlistId}(wishlistId=${wishlistId})}">Tilbage</a>
 
 </body>
 </html>

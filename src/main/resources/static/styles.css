@@ -315,3 +315,9 @@ form button[type="submit"] {
         padding-left: 20px;
     }
 }
+textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 8px;
+    margin-bottom: 10px;
+}

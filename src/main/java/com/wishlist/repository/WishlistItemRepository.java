@@ -40,8 +40,11 @@ public class WishlistItemRepository {
     public void deleteWishlistItem(int id) {
         jdbcTemplate.update("DELETE FROM wishlist_item WHERE id = ?", id);
     }
-    public void updateWishlistItem(int id, String name, String link) {
-        jdbcTemplate.update("UPDATE wishlist_item SET name = ?, link = ? WHERE id = ?", name, link, id);
+    public void updateWishlistItem(int id, String name, String link, String imageUrl, String comment) {
+        jdbcTemplate.update(
+                "UPDATE wishlist_item SET name = ?, link = ?, image_url = ?, comment = ? WHERE id = ?",
+                name, link, imageUrl, comment, id
+        );
     }
     public Optional<WishlistItem> findById(int itemId) {
         List<WishlistItem> results = jdbcTemplate.query("SELECT * FROM wishlist_item WHERE id = ?", wishlistItemRowMapper, itemId);

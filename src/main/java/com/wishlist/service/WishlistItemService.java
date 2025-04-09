@@ -26,8 +26,8 @@ public class WishlistItemService {
     public void deleteWishlistItem(int id) {
         wishlistItemRepository.deleteWishlistItem(id);
     }
-    public void updateWishlistItem(int itemId, String name, String link) {
-        wishlistItemRepository.updateWishlistItem(itemId, name, link);
+    public void updateWishlistItem(int itemId, String name, String link, String imageUrl, String comment) {
+        wishlistItemRepository.updateWishlistItem(itemId, name, link, imageUrl, comment);
     }
     public Optional<WishlistItem> getItemById(int itemId) {
         return wishlistItemRepository.findById(itemId);
@@ -35,5 +35,4 @@ public class WishlistItemService {
     public List<WishlistItem> getAllWishlistItems() {
         return wishlistItemRepository.findAll();
     }
-
 }

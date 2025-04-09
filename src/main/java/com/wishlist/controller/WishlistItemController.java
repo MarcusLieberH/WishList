@@ -50,5 +50,37 @@ public class WishlistItemController {
         wishlistItemService.deleteWishlistItem(itemId);
         return "redirect:/wishlist/" + wishlistId;
     }
-}
 
+    @GetMapping("/items/{itemId}/edit")
+    public String showEditForm(@PathVariable int wishlistId, @PathVariable int itemId, Model model) {
+        Optional<WishlistItem> item = wishlistItemService.getItemById(itemId);
+
+        if (item.isPresent()) {
+            model.addAttribute("item", item.get());
+            model.addAttribute("wishlistId", wishlistId);
+            return "editWishlistItem";
+        }
+
+        return "redirect:/wishlist/" + wishlistId;
+    }
+
+    @PostMapping("/items/{itemId}/edit")
+    public String editWishlistItem(
+            @PathVariable int wishlistId,
+            @PathVariable int itemId,
+            @RequestParam String name,
+            @RequestParam(required = false) String link,
+            @RequestParam(required = false) String comment
+    ) {
+        Optional<WishlistItem> existingItem = wishlistItemService.getItemById(itemId);
+        if (existingItem.isPresent()) {
+            WishlistItem item = existingItem.get();
+            // Preserve imageUrl while updating name, link, and comment
+            wishlistItemService.updateWishlistItem(itemId, name, link, item.getImageUrl(), comment);
+        } else {
+            // If item doesn't exist, just update with the provided values
+            wishlistItemService.updateWishlistItem(itemId, name, link, null, comment);
+        }
+        return "redirect:/wishlist/" + wishlistId;
+    }
+}
