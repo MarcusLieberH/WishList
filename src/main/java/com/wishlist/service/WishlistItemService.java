@@ -18,9 +18,10 @@ public class WishlistItemService {
         return wishlistItemRepository.findByWishlistId(wishlistId);
     }
 
-    public void addWishlistItem(int wishlistId, String name, String link) {
-        wishlistItemRepository.addWishlistItem(wishlistId, name, link);
+    public void addWishlistItem(int wishlistId, String name, String link, String imageUrl, String comment) {
+        wishlistItemRepository.addWishlistItem(wishlistId, name, link, imageUrl, comment);
     }
+
 
     public void deleteWishlistItem(int id) {
         wishlistItemRepository.deleteWishlistItem(id);

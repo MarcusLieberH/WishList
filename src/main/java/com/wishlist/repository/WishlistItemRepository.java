@@ -20,6 +20,8 @@ public class WishlistItemRepository {
                     rs.getInt("wishlist_id"),
                     rs.getString("name"),
                     rs.getString("link"),
+                    rs.getString("image_url"),
+                    rs.getString("comment"),
                     rs.getTimestamp("created_at").toLocalDateTime()
             );
 
@@ -27,10 +29,13 @@ public class WishlistItemRepository {
         return jdbcTemplate.query("SELECT * FROM wishlist_item WHERE wishlist_id = ?", wishlistItemRowMapper, wishlistId);
     }
 
-    public void addWishlistItem(int wishlistId, String name, String link) {
-        jdbcTemplate.update("INSERT INTO wishlist_item (wishlist_id, name, link) VALUES (?, ?, ?)",
-                wishlistId, name, link);
+    public void addWishlistItem(int wishlistId, String name, String link, String imageUrl, String comment) {
+        jdbcTemplate.update(
+                "INSERT INTO wishlist_item (wishlist_id, name, link, image_url, comment, created_at) VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP)",
+                wishlistId, name, link, imageUrl, comment
+        );
     }
+
 
     public void deleteWishlistItem(int id) {
         jdbcTemplate.update("DELETE FROM wishlist_item WHERE id = ?", id);

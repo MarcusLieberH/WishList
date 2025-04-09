@@ -33,10 +33,18 @@ public class WishlistItemController {
     }
 
     @PostMapping("/add-item")
-    public String addWishlistItem(@PathVariable int wishlistId, @RequestParam String name, @RequestParam(required = false) String link) {
-        wishlistItemService.addWishlistItem(wishlistId, name, link);
+    public String addWishlistItem(
+            @PathVariable int wishlistId,
+            @RequestParam String name,
+            @RequestParam(required = false) String link,
+            @RequestParam(required = false) String imageUrl,
+            @RequestParam(required = false) String comment
+    ) {
+        wishlistItemService.addWishlistItem(wishlistId, name, link, imageUrl, comment);
         return "redirect:/wishlist/" + wishlistId;
     }
+
+
     @PostMapping("/items/{itemId}/delete")
     public String deleteWishlistItem(@PathVariable int wishlistId, @PathVariable int itemId) {
         wishlistItemService.deleteWishlistItem(itemId);
