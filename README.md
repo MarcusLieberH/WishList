@@ -15,3 +15,5 @@
 ### ☁️ Azure SQL database
 ![Azure database](src/main/resources/images/azureDatabase.png)
 
+### 🧪 Qodana kodeanalyse
+![Qodana rapport](src/main/resources/images/Qodana.png)
