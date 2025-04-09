@@ -1,7 +1,7 @@
 ## 🖼️ Brugerflade og funktionalitet
 
 ### 🔐 Login og opret bruger
-![Login og opret](.src/main/resources/images/ForsideLoginOpret.png)
+![Login og opret](src/main/resources/images/ForsideLoginOpret.png)
 
 ### 📂 Oversigt over ønskelister
 ![Ønskelister](.src/main/resources/images/ønskelister.png)
